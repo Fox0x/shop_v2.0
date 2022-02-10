@@ -1,0 +1,39 @@
+.form__button__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form__button {
+	border: solid 2px #dbdfea;
+	border-radius: 20px;
+	color: #dbdfea;
+	background-color: rgba(255, 255, 255, 0.05);
+	font-weight: 400;
+	font-size: 1.2rem;
+	padding: 0.5rem 1rem;
+	transition: all 0.2s ease-in-out;
+	text-decoration: none;
+}
+
+.form__button:hover {
+	background-color: #dbdfea;
+	color: #1d1e2c;
+}
+
+.form__button:disabled {
+	opacity: 0.2;
+	color: #dbdfea;
+}
+
+.form__button:disabled:hover {
+	color: #dbdfea;
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.form__timer {
+	position: absolute;
+	bottom: 5%;
+	color: white;
+	text-align: center;
+}

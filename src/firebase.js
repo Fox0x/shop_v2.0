@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {
 	getAuth,
-	createUserWithEmailAndPassword,
-	fetchSignInMethodsForEmail,
-	signInWithEmailAndPassword,
+	RecaptchaVerifier,
+	signInWithPhoneNumber,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -16,16 +15,42 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+export const auth = getAuth(app);
 
-export const userExist = (email) => {
-	return fetchSignInMethodsForEmail(auth, email);
+// ====================================================================== //
+
+export const requestRecaptchVerifier = () => {
+	window.recaptchaVerifier = new RecaptchaVerifier("recapcha-container", {
+		size: "invisible",
+		callback: (response) => {
+			console.log(response);
+		}
+	},auth);
 };
 
-export const signin = (email, password) => {
-	return signInWithEmailAndPassword(auth, email, password);
+export const signInWithPhone = async (phoneNumber) => {
+	let appVerifier = window.recaptchaVerifier;
+	const confirmationResult = await signInWithPhoneNumber(
+		auth,
+		phoneNumber,
+		appVerifier
+	);
+	window.confirmationResult = confirmationResult;
+	return confirmationResult;
 };
 
-export const signup = (email, password) => {
-	return createUserWithEmailAndPassword(auth, email, password);
+export const confirmOTP = (code) => {
+	let confirmationResult = window.confirmationResult;
+	return confirmationResult.confirm(code);
+	// .then((result) => {
+	// 	// User signed in successfully.
+	// 	const user = result.user;
+	// 	console.log("User signed in successfully.", user);
+	// 	// ...
+	// })
+	// .catch((error) => {
+	// 	// User couldn't sign in (bad verification code?)
+	// 	console.log("User couldn't sign in.", error);
+	// 	// ...
+	// });
 };
