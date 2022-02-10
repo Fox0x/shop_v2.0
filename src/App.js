@@ -1,11 +1,11 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import App from "./components/App.jsx";
+import { AuthPage } from "./pages/Auth/AuthPage.jsx";
 
 export const App = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<App />} />
+			<Route path="/auth" element={<AuthPage/>} />
 		</Routes>
 	);
 };

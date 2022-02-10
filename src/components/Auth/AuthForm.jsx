@@ -150,6 +150,7 @@ export default function AuthForm() {
 				/>
 			)}
 			<div id="recapcha-container"></div>
+			{/* Errors list */}
 			<ErrorsPopup errorMessages={errorMessages} />
 		</form>
 	);

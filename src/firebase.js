@@ -49,3 +49,8 @@ export const confirmOTP = (code) => {
 	return confirmationResult.confirm(code);
 	
 };
+
+export const logout = () => {
+	
+	auth.signOut();
+}
