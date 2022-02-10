@@ -1,37 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    uid: null,
-    phone: null,
-    email: null,
-    isEmailVerified: false,
-    creationTime: null,
-    lastSignInTime: null,
+	uid: null,
+	phone: null,
+	email: null,
+	isEmailVerified: false,
+	creationTime: null,
+	lastSignInTime: null,
 };
 
 const userSlice = createSlice({
-    name: "user",
-    initialState,
-    reducers: {
+	name: "user",
+	initialState,
+	reducers: {
+		setUser: (state, action) => {
+			state.uid = action.payload.uid;
+			state.phone = action.payload.phone;
+			state.email = action.payload.email;
+			state.isEmailVerified = action.payload.isEmailVerified;
+			state.creationTime = action.payload.creationTime;
+			state.lastSignInTime = action.payload.lastSignInTime;
+			state.createdAt = action.payload.createdAt;
+			state.lastLoginAt = action.payload.lastLoginAt;
+		},
 
-        setUser: (state, action) => {
-            state.uid = action.payload.uid;
-            state.phone = action.payload.phone;
-            state.email = action.payload.email;
-            state.isEmailVerified = action.payload.isEmailVerified;
-            state.creationTime = action.payload.creationTime;
-            state.lastSignInTime = action.payload.lastSignInTime;
-        },
-
-        removeUser: (state) => {
-            state.uid = null;
-            state.phone = null;
-            state.email = null;
-            state.isEmailVerified = false;
-            state.creationTime = null;
-            state.lastSignInTime = null;
-        }
-    }
+		removeUser: (state) => {
+			state.uid = null;
+			state.phone = null;
+			state.email = null;
+			state.isEmailVerified = false;
+			state.creationTime = null;
+			state.lastSignInTime = null;
+			state.createdAt = null;
+			state.lastLoginAt = null;
+		},
+	},
 });
 
 export const { setUser, removeUser } = userSlice.actions;

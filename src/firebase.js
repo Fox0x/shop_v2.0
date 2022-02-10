@@ -51,6 +51,5 @@ export const confirmOTP = (code) => {
 };
 
 export const logout = () => {
-	
 	auth.signOut();
 }

@@ -7,14 +7,17 @@ import {
 	requestRecaptchVerifier,
 	signInWithPhone,
 } from "../../firebase";
+import { setUser } from "../../store/slices/userSlice";
 import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
 import { OtpSubmitButton } from "../UI/Buttons/OtpSubmitButton";
 import ErrorsPopup from "../UI/ErrorsPopup/ErrorsPopup";
+import { useDispatch } from "react-redux";
 
 export default function AuthForm() {
 	const [errorMessages, setErrorMessages] = React.useState(null);
 	const [stage, setStage] = React.useState("phoneVerification");
 	const [isOtpInputHidden, setIsOtpInputHidden] = React.useState(true);
+	const dispatch = useDispatch();
 	const formik = useFormik({
 		initialValues: {
 			phone: "",
@@ -58,9 +61,9 @@ export default function AuthForm() {
 		try {
 			requestRecaptchVerifier();
 			signInWithPhone(formik.values.phone).catch(() => {
-				//Worst case to remove recaptcha. 
+				//Worst case to remove recaptcha.
 				window.location.reload(false);
-			})
+			});
 		} catch (error) {
 			arr.push(error.code);
 			setErrorMessages(arr);
@@ -69,13 +72,26 @@ export default function AuthForm() {
 	// Verify OTP code and sign in with phone number.
 	const otpVerificationHandler = async () => {
 		await confirmOTP(formik.values.otp)
-		.then(result => {
-			console.log(result.user);
-		})
-		.catch(error => {
-			arr.push(error.code);
-			setErrorMessages(arr);
-		});
+			.then(({ ...result }) => {
+				// Save user data to store.
+				dispatch(
+					setUser({
+						uid: result.user.uid,
+						email: result.user.email,
+						isEmailVerified: result.user.emailVerified,
+						phone: result.user.phoneNumber,
+						creationTime: result.user.metadata.creationTime,
+						lastSignInTime: result.user.metadata.lastSignInTime,
+						createdAt: result.user.metadata.createdAt,
+						lastLoginAt: result.user.metadata.lastLoginAt,
+					})
+				);
+			})
+			
+			.catch((error) => {
+				arr.push(error.code);
+				setErrorMessages(arr);
+			});
 	};
 
 	return (
