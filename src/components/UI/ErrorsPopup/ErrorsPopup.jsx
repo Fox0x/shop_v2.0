@@ -14,6 +14,11 @@ export default function ErrorsPopup(props) {
 			return "Ошибка авторизации. Попробуйте позже";
 		if (error === "auth/invalid-verification-code")
 			return "Проверьте правильность ввода кода из СМС";
+		if (error === "auth/user-disabled")
+			return "Ваш аккаунт заблокирован";
+		if (error === "auth/code-expired")
+			return "Время действия кода истекло";
+
 		return error;
 	};
 

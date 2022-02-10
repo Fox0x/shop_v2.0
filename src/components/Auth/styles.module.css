@@ -11,6 +11,8 @@
 	backdrop-filter: blur(6px);
 	-webkit-backdrop-filter: blur(6px);
 	box-shadow: 0 0 20px #000;
+
+	transition: all 0.3s ease-in-out;
 }
 
 .form__title {
@@ -121,3 +123,4 @@ input:-webkit-autofill:active {
 		max-width: 90%;
 	}
 }
+

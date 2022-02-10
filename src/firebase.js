@@ -3,6 +3,7 @@ import {
 	getAuth,
 	RecaptchaVerifier,
 	signInWithPhoneNumber,
+	PhoneAuthProvider,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -20,16 +21,20 @@ export const auth = getAuth(app);
 // ====================================================================== //
 
 export const requestRecaptchVerifier = () => {
-	window.recaptchaVerifier = new RecaptchaVerifier("recapcha-container", {
-		size: "invisible",
-		callback: (response) => {
-			console.log(response);
-		}
-	},auth);
+	window.recaptchaVerifier = new RecaptchaVerifier(
+		"recapcha-container",
+		{
+			size: "invisible",
+			callback: (response) => {
+				console.log(response);
+			},
+		},
+		auth
+	);
 };
 
 export const signInWithPhone = async (phoneNumber) => {
-	let appVerifier = window.recaptchaVerifier;
+	const appVerifier = window.recaptchaVerifier;
 	const confirmationResult = await signInWithPhoneNumber(
 		auth,
 		phoneNumber,
@@ -40,17 +45,7 @@ export const signInWithPhone = async (phoneNumber) => {
 };
 
 export const confirmOTP = (code) => {
-	let confirmationResult = window.confirmationResult;
+	const confirmationResult = window.confirmationResult;
 	return confirmationResult.confirm(code);
-	// .then((result) => {
-	// 	// User signed in successfully.
-	// 	const user = result.user;
-	// 	console.log("User signed in successfully.", user);
-	// 	// ...
-	// })
-	// .catch((error) => {
-	// 	// User couldn't sign in (bad verification code?)
-	// 	console.log("User couldn't sign in.", error);
-	// 	// ...
-	// });
+	
 };

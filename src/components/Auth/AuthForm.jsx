@@ -57,11 +57,13 @@ export default function AuthForm() {
 		setIsOtpInputHidden(false);
 		try {
 			requestRecaptchVerifier();
-			signInWithPhone(formik.values.phone);
+			signInWithPhone(formik.values.phone).catch(() => {
+				//Worst case to remove recaptcha. 
+				window.location.reload(false);
+			})
 		} catch (error) {
 			arr.push(error.code);
 			setErrorMessages(arr);
-			console.log(error);
 		}
 	};
 	// Verify OTP code and sign in with phone number.
