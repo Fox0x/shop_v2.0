@@ -27,7 +27,7 @@ export default function ErrorsPopup(props) {
 			{Object.values(errors).map((error) => (
 				<div className={css.error__message} key={error}>
 					<img
-						src="/img/error.svg"
+						src="/img/svg/error.svg"
 						alt="error"
 						className={css.error__img}
 					/>

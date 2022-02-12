@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import css from "./styles.module.css";
+import css from "./AuthForm.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -12,12 +12,14 @@ import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
 import { OtpSubmitButton } from "../UI/Buttons/OtpSubmitButton";
 import ErrorsPopup from "../UI/ErrorsPopup/ErrorsPopup";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthForm() {
 	const [errorMessages, setErrorMessages] = React.useState(null);
 	const [stage, setStage] = React.useState("phoneVerification");
 	const [isOtpInputHidden, setIsOtpInputHidden] = React.useState(true);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			phone: "",
@@ -87,7 +89,7 @@ export default function AuthForm() {
 					})
 				);
 			})
-			
+			navigate("/")
 			.catch((error) => {
 				arr.push(error.code);
 				setErrorMessages(arr);

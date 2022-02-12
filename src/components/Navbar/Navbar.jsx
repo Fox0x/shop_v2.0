@@ -1,28 +1,38 @@
 import React from "react";
-import Details from "../UI/Buttons/Details/Details";
-import NotificationsBtn from "../UI/Buttons/NotificationsButton/NotificationsButton";
-import Search from "../UI/Buttons/Search/Search";
 import css from "./Navbar.module.css";
 
-export default function Navbar() {
+export const Navbar = () => {
 	return (
 		<nav className={css.navbar__wrapper}>
-			<ul className={css.navbar__links}>
-				<li className={css.navbar__link}>Home</li>
-				<li className={css.navbar__link}>About</li>
-				<li className={css.navbar__link}>Contact</li>
-			</ul>
-			<ul className={css.navbar__buttons}>
-				<li className={css.navbar__buttonsItem}>
-					<Search />
-				</li>
-				<li className={css.navbar__buttonsItem}>
-					<NotificationsBtn />
-				</li>
-				<li className={css.navbar__buttonsItem}>
-					<Details />
-				</li>
-			</ul>
+			<div className={css.leftSide}>
+			<img
+					className={css.user__icon}
+					src="/img/svg/menu.svg"
+					alt="user"
+				/>
+			</div>
+			<div className={css.centerSide}>
+				<input
+					className={css.searchInput}
+					type="text"
+					placeholder="🔍︎ Я ищу..."
+				/>
+			</div>
+			<div className={css.rightSide}>
+				<img
+					className={css.user__icon}
+					src="/img/svg/user.svg"
+					alt="user"
+				/>
+
+				<img 
+					className={css.cart__icon}
+					src="/img/svg/cart.svg"
+					alt="cart"
+				/>
+
+				<div className={css.cart}></div>
+			</div>
 		</nav>
 	);
 }
