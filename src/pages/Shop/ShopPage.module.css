@@ -1,0 +1,16 @@
+.shop__items {
+
+
+}
+
+.items__category {
+    width: 90%;
+    color: #dbdfea;
+    margin: 0 auto;
+}
+
+.items__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

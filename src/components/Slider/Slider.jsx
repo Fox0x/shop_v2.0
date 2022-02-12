@@ -7,6 +7,7 @@ export const Slider = () => {
 	const [sliderOffset, setSliderOffset] = React.useState(0);
 	const maxSliderWidth = sliderWidth * 7;
 
+	// Every time slider width changes, set slide width;
 	useEffect(() => {
 		setSliderWidth(slider.current.offsetWidth);
 		document.querySelectorAll(".slide").forEach((item) => {
@@ -14,17 +15,18 @@ export const Slider = () => {
 		});
 	}, [sliderWidth]);
 
-	const moveLeft = () => {
+	
+	function moveLeft() {
 		sliderOffset < 0
 			? setSliderOffset(sliderOffset + sliderWidth)
-			: setSliderOffset(0);
-	};
+			: setSliderOffset(0); // Start position
+	}
 
-	const moveRight = () => {
+	function moveRight() {
 		sliderOffset > -maxSliderWidth + sliderWidth
 			? setSliderOffset(sliderOffset - sliderWidth)
-			: setSliderOffset(-maxSliderWidth + sliderWidth);
-	};
+			: setSliderOffset(-maxSliderWidth + sliderWidth); //Final position
+	}
 
 	return (
 		<div className={css.slider__wrapper}>

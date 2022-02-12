@@ -2,13 +2,14 @@ import React from "react";
 import css from "./Navbar.module.css";
 
 export const Navbar = () => {
+	const [searchValue, setSearchValue] = React.useState("");
 	return (
 		<nav className={css.navbar__wrapper}>
 			<div className={css.leftSide}>
-			<img
-					className={css.user__icon}
+				<img
+					className={css.menu__icon}
 					src="/img/svg/menu.svg"
-					alt="user"
+					alt="menu"
 				/>
 			</div>
 			<div className={css.centerSide}>
@@ -16,23 +17,24 @@ export const Navbar = () => {
 					className={css.searchInput}
 					type="text"
 					placeholder="🔍︎ Я ищу..."
+					value={searchValue}
+					onChange={(e) => setSearchValue(e.target.value)}
 				/>
 			</div>
 			<div className={css.rightSide}>
+				{/* Get info about user and signout */}
 				<img
 					className={css.user__icon}
 					src="/img/svg/user.svg"
 					alt="user"
 				/>
-
-				<img 
+				{/*Shop cart list  */}
+				<img
 					className={css.cart__icon}
 					src="/img/svg/cart.svg"
 					alt="cart"
 				/>
-
-				<div className={css.cart}></div>
 			</div>
 		</nav>
 	);
-}
+};

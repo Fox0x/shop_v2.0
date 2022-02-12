@@ -1,0 +1,41 @@
+.card {
+    backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+	border-radius: 10px;
+	border-bottom: 3px solid rgba(68, 68, 68, 0.5);
+	color: #dbdfea;
+	padding: 30px 15px 30px;
+	margin: 15px 30px;
+	width: 250px;
+	max-width: 100%;
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px #000;
+	transform: scale(1.05);
+	border-bottom: 3px solid rgba(255, 255, 255, 0.64);
+}
+
+.card .card__image {
+	border: 1px solid #dbdfea;
+	border-radius: 50%;
+	padding: 7px;
+}
+
+.card__buttons button {
+	border: 1px solid #dbdfea;
+	border-radius: 3px;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 10px 25px;
+	background-color: transparent;
+	color: #c2c2c2;
+    transition: all 0.3s ease-in-out;
+}
+
+.card__buttons button:hover {
+	transform: scale(1.05);
+	background-color: rgba(38, 37, 37, 0.3);
+}

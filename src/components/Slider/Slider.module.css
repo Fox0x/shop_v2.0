@@ -46,6 +46,8 @@
 .slider__line {
 	display: flex;
 	transition: all 1s ease;
+    backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
 }
 
 .slider__line img {

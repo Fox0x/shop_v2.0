@@ -363,5 +363,5 @@ template {
 
 
 body {
-   background: url('/public/img/bg.jpg') center center fixed;
+   background: url('/public/img/bg.jpg') fixed;
 }
