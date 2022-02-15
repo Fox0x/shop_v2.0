@@ -184,7 +184,7 @@ input {
 **/
 
 input::-ms-clear {
-   display: none;
+	display: none;
 }
 
 /**
@@ -361,7 +361,10 @@ template {
 /* Main styles
       =============================================================================== */
 
-
 body {
-   background: url('/public/img/bg.jpg') fixed;
+	background: url("/public/img/bg.jpg") fixed;
+}
+
+::-webkit-scrollbar {
+	width: 0;
 }

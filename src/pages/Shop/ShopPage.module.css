@@ -1,16 +1,25 @@
-.shop__items {
-
-
+.shop__wrapper {
+	display: block;
 }
 
 .items__category {
-    width: 90%;
-    color: #dbdfea;
-    margin: 0 auto;
+	width: 90%;
+	color: #dbdfea;
+	margin: 0 auto;
 }
 
 .items__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+hr {
+	border: 1px solid rgba(219, 223, 234, 0.5);
+}
+
+.emptyPlaceholder {
+	text-align: center;
+	margin-top: 20vh;
+	color: rgba(219, 223, 234, 0.8);
 }

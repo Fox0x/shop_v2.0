@@ -1,8 +1,8 @@
 import React from "react";
 import css from "./Navbar.module.css";
 
-export const Navbar = () => {
-	const [searchValue, setSearchValue] = React.useState("");
+export const Navbar = ({searchQuery, setSearchQuery}) => {
+	
 	return (
 		<nav className={css.navbar__wrapper}>
 			<div className={css.leftSide}>
@@ -17,8 +17,8 @@ export const Navbar = () => {
 					className={css.searchInput}
 					type="text"
 					placeholder="🔍︎ Я ищу..."
-					value={searchValue}
-					onChange={(e) => setSearchValue(e.target.value)}
+					value={searchQuery}
+					onChange={(e) => setSearchQuery(e.target.value)}
 				/>
 			</div>
 			<div className={css.rightSide}>

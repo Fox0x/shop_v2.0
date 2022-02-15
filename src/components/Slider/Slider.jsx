@@ -1,11 +1,17 @@
+import classNames from "classnames";
 import React, { useEffect, useRef } from "react";
 import css from "./Slider.module.css";
 
-export const Slider = () => {
+export const Slider = ({isHidden}) => {
 	const slider = useRef(null);
 	const [sliderWidth, setSliderWidth] = React.useState(0);
 	const [sliderOffset, setSliderOffset] = React.useState(0);
 	const maxSliderWidth = sliderWidth * 7;
+
+	const sliderClasses = classNames(css.slider__wrapper, {
+		[css.slider_hidden]: isHidden,
+	})
+
 
 	// Every time slider width changes, set slide width;
 	useEffect(() => {
@@ -29,7 +35,7 @@ export const Slider = () => {
 	}
 
 	return (
-		<div className={css.slider__wrapper}>
+		<div className={sliderClasses} >
 			<div className={css.slider} ref={slider}>
 				<button
 					className={css.slider__buttonLeft}
