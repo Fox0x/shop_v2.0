@@ -7,6 +7,7 @@ export const AuthPage = () => {
 	return (
 		<div className={css.authPage__wrapper}>
 			<AuthForm />
+			<div id="recapcha-container"></div>
 		</div>
 	);
 };
