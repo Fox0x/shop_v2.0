@@ -6,7 +6,7 @@ import {
 	confirmOTP,
 	requestRecaptchVerifier,
 	signInWithPhone,
-} from "../../firebase";
+} from "../../controllers/authController";
 import { setUser } from "../../store/slices/userSlice";
 import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
 import { OtpSubmitButton } from "../UI/Buttons/OtpSubmitButton";
@@ -58,23 +58,22 @@ export default function AuthForm() {
 	}, [formik.errors, formik.touched]);
 
 	// Show OTP input, request RECAPTCHA, then send SMS code by phone number.
-	const phoneVerificationHandler = () => {
-		setIsOtpInputHidden(false);
-		try {
-			requestRecaptchVerifier();
-			signInWithPhone(formik.values.phone).catch(() => {
-				//Worst case to remove recaptcha.
-				window.location.reload(false);
+	const phoneVerificationHandler = async () => {
+		requestRecaptchVerifier();
+		await signInWithPhone(formik.values.phone)
+			.then(() => {
+				setIsOtpInputHidden(false);
+			})
+			.catch((error) => {
+				// TODO: Add error message and reset RECAPTCHA.
+				arr.push(error.code);
+				setErrorMessages(arr);
 			});
-		} catch (error) {
-			arr.push(error.code);
-			setErrorMessages(arr);
-		}
 	};
 	// Verify OTP code and sign in with phone number.
 	const otpVerificationHandler = async () => {
 		await confirmOTP(formik.values.otp)
-			.then(({ ...result }) => {
+			.then(({...result}) => {
 				// Save user data to store.
 				dispatch(
 					setUser({
@@ -88,9 +87,10 @@ export default function AuthForm() {
 						lastLoginAt: result.user.metadata.lastLoginAt,
 					})
 				);
+				navigate("/");
 			})
-			navigate("/")
 			.catch((error) => {
+				formik.values.otp = "";
 				arr.push(error.code);
 				setErrorMessages(arr);
 			});

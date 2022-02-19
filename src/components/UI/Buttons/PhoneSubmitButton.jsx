@@ -10,6 +10,10 @@ export const PhoneSubmitButton = (props) => {
 		counter > 0
 			? setTimeout(() => setCounter(counter - 1), 1000)
 			: setIsButtonDisabled(false);
+
+		return () => {
+			clearTimeout();
+		}
 	}, [counter]);
 
 	// If phone is invalid, disable button

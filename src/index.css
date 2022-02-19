@@ -365,6 +365,9 @@ body {
 	background: url("/public/img/bg.jpg") fixed;
 }
 
+/* 
+   * Remove scrollbars.
+   */
 ::-webkit-scrollbar {
 	width: 0;
 }

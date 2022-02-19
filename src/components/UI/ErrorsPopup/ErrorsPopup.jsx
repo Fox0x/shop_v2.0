@@ -10,6 +10,8 @@ export default function ErrorsPopup(props) {
 			return "Перезагрузите страницу или попробуйте позже";
 		if (error === "auth/too-many-requests")
 			return "Слишком много попыток входа. Попробуйте позже";
+		if (error === "auth/invalid-phone-number")
+			return "Проверьте правильность ввода номера телефона";
 		if (error === "auth/operation-not-allowed")
 			return "Ошибка авторизации. Попробуйте позже";
 		if (error === "auth/invalid-verification-code")

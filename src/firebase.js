@@ -1,10 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {
-	getAuth,
-	RecaptchaVerifier,
-	signInWithPhoneNumber,
-	PhoneAuthProvider,
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -17,39 +12,3 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-
-// ====================================================================== //
-
-export const requestRecaptchVerifier = () => {
-	window.recaptchaVerifier = new RecaptchaVerifier(
-		"recapcha-container",
-		{
-			size: "invisible",
-			callback: (response) => {
-				console.log(response);
-			},
-		},
-		auth
-	);
-};
-
-export const signInWithPhone = async (phoneNumber) => {
-	const appVerifier = window.recaptchaVerifier;
-	const confirmationResult = await signInWithPhoneNumber(
-		auth,
-		phoneNumber,
-		appVerifier
-	);
-	window.confirmationResult = confirmationResult;
-	return confirmationResult;
-};
-
-export const confirmOTP = (code) => {
-	const confirmationResult = window.confirmationResult;
-	return confirmationResult.confirm(code);
-	
-};
-
-export const logout = () => {
-	auth.signOut();
-}
