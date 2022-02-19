@@ -57,15 +57,18 @@ export default function AuthForm() {
 		}
 	}, [formik.errors, formik.touched]);
 
-	// Show OTP input, request RECAPTCHA, then send SMS code by phone number.
-	const phoneVerificationHandler = async () => {
+	// Request RECAPTCHA when page is loaded.
+	useEffect(() => {
 		requestRecaptchVerifier();
+	}, []);
+
+	// Show OTP input, then send SMS code by phone number.
+	const phoneVerificationHandler = async () => {
 		await signInWithPhone(formik.values.phone)
 			.then(() => {
 				setIsOtpInputHidden(false);
 			})
 			.catch((error) => {
-				// TODO: Add error message and reset RECAPTCHA.
 				arr.push(error.code);
 				setErrorMessages(arr);
 			});
@@ -73,7 +76,7 @@ export default function AuthForm() {
 	// Verify OTP code and sign in with phone number.
 	const otpVerificationHandler = async () => {
 		await confirmOTP(formik.values.otp)
-			.then(({...result}) => {
+			.then(({ ...result }) => {
 				// Save user data to store.
 				dispatch(
 					setUser({

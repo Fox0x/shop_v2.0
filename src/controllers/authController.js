@@ -1,7 +1,6 @@
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
 
-
 // Create RECAPTCHA component
 export const requestRecaptchVerifier = () => {
 	window.recaptchaVerifier = new RecaptchaVerifier(
@@ -9,8 +8,8 @@ export const requestRecaptchVerifier = () => {
 		{
 			size: "invisible",
 			callback: (response) => {
-				console.log(response);
-			},
+				console.log('RECAPTCHA verified successfully. \n', response);
+			}
 		},
 		auth
 	);
