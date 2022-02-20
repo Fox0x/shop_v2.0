@@ -9,15 +9,17 @@ import {
 } from "../../controllers/authController";
 import { setUser } from "../../store/slices/userSlice";
 import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
-import { OtpSubmitButton } from "../UI/Buttons/OtpSubmitButton";
+import { StyledButton } from "../UI/Buttons/StyledButton";
 import ErrorsPopup from "../UI/ErrorsPopup/ErrorsPopup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { saveUserToLS } from "../../controllers/userController";
 
 export default function AuthForm() {
 	const [errorMessages, setErrorMessages] = React.useState(null);
 	const [stage, setStage] = React.useState("phoneVerification");
 	const [isOtpInputHidden, setIsOtpInputHidden] = React.useState(true);
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const formik = useFormik({
@@ -36,28 +38,8 @@ export default function AuthForm() {
 				.length(6, "Проверьте правильность ввода кода из СМС"),
 		}),
 	});
-	let arr = [];
 
-	useEffect(() => {
-		// Set error messages array.
-		if (formik.errors.phone && formik.touched.phone)
-			arr.push(formik.errors.phone);
-		if (formik.errors.otp && formik.touched.otp)
-			arr.push(formik.errors.otp);
-		if (!formik.errors) {
-			arr = [];
-		}
-		arr.length > 0 ? setErrorMessages(arr) : setErrorMessages(null);
-
-		// Change stage to OTP input.
-		if (!formik.values.otp && stage === "otpVerification") {
-			setStage("phoneVerification");
-		} else if (formik.values.otp && stage === "phoneVerification") {
-			setStage("otpVerification");
-		}
-	}, [formik.errors, formik.touched]);
-
-	// Request RECAPTCHA when page is loaded.
+	// Request RECAPTCHA, then request user from storage.
 	useEffect(() => {
 		requestRecaptchVerifier();
 	}, []);
@@ -76,20 +58,10 @@ export default function AuthForm() {
 	// Verify OTP code and sign in with phone number.
 	const otpVerificationHandler = async () => {
 		await confirmOTP(formik.values.otp)
-			.then(({ ...result }) => {
+			.then((result) => {
 				// Save user data to store.
-				dispatch(
-					setUser({
-						uid: result.user.uid,
-						email: result.user.email,
-						isEmailVerified: result.user.emailVerified,
-						phone: result.user.phoneNumber,
-						creationTime: result.user.metadata.creationTime,
-						lastSignInTime: result.user.metadata.lastSignInTime,
-						createdAt: result.user.metadata.createdAt,
-						lastLoginAt: result.user.metadata.lastLoginAt,
-					})
-				);
+				storeUser(result.user);
+
 				navigate("/");
 			})
 			.catch((error) => {
@@ -98,6 +70,46 @@ export default function AuthForm() {
 				setErrorMessages(arr);
 			});
 	};
+
+	// Save user data.
+	const storeUser = (user) => {
+		const tmpUser = {
+			uid: user.uid,
+			name: user.displayName,
+			email: user.email,
+			isEmailVerified: user.emailVerified,
+			phone: user.phoneNumber,
+			creationTime: user.metadata.creationTime,
+			lastSignInTime: user.metadata.lastSignInTime,
+			createdAt: user.metadata.createdAt,
+			lastLoginAt: user.metadata.lastLoginAt,
+		};
+		// Save user data to store.
+		dispatch(setUser(tmpUser));
+		// Save user data to local storage.
+		saveUserToLS(tmpUser);
+	};
+
+	// TODO: Переделать на стейт
+	let arr = [];
+	useEffect(() => {
+		// Set error messages array.
+		if (formik.errors.phone && formik.touched.phone)
+			arr.push(formik.errors.phone);
+		if (formik.errors.otp && formik.touched.otp)
+			arr.push(formik.errors.otp);
+		if (!formik.errors) {
+			arr = [];
+		}
+		arr.length > 0 ? setErrorMessages(arr) : setErrorMessages(null);
+
+		// Change stage to OTP input.
+		if (!formik.values.otp && stage === "otpVerification") {
+			setStage("phoneVerification");
+		} else if (formik.values.otp && stage === "phoneVerification") {
+			setStage("otpVerification");
+		}
+	}, [formik.errors, formik.touched]);
 
 	return (
 		<form className={css.form}>
@@ -161,14 +173,15 @@ export default function AuthForm() {
 				/>
 			) : (
 				// OTP submit button
-				<OtpSubmitButton
+				<StyledButton
 					onClick={otpVerificationHandler}
-					isOtpHasErrors={
+					disabled={
 						formik.errors.otp
 							? !!Object.keys(formik.errors.otp).length
 							: false
-					}
-				/>
+					}>
+					Войти
+				</StyledButton>
 			)}
 			{/* Errors list */}
 			<ErrorsPopup errorMessages={errorMessages} />

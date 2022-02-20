@@ -4,8 +4,6 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { Slider } from "../../components/Slider/Slider";
 import { ItemCard } from "../../components/ItemCard/ItemCard";
 import { useSearch } from "../../hooks/useSearch";
-import { useUser } from "../../hooks/useUser";
-
 export const ShopPage = () => {
 	const [searchQery, setSearchQuery] = React.useState("");
 	const items = useSearch(searchQery);

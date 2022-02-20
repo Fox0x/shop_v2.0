@@ -1,19 +1,18 @@
 import React from "react";
 import css from "./styles.module.css";
 
-export const OtpSubmitButton = (props) => {
+export const StyledButton = (props) => {
 	const handleClick = () => {
 		props.onClick();
 	};
 
 	return (
-		<div className={css.form__button__wrapper}>
+		<div className={css.styledButton__wrapper}>
 			<button
 				type="button"
-				className={css.form__button}
-				disabled={props.isOtpHasErrors}
+				className={css.styledButton}
 				onClick={() => handleClick()}>
-				Войти
+				{props.children}
 			</button>
 		</div>
 	);

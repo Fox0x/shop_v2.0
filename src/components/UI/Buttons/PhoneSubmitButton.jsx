@@ -1,39 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import css from "./styles.module.css";
 
 export const PhoneSubmitButton = (props) => {
-	const [counter, setCounter] = React.useState(0);
-	const [isButtonDisabled, setIsButtonDisabled] = React.useState(true);
+	const [counter, setCounter] = useState(0);
+	const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
 	// Timer for phone verification
-	React.useEffect(() => {
+	useEffect(() => {
 		counter > 0
 			? setTimeout(() => setCounter(counter - 1), 1000)
 			: setIsButtonDisabled(false);
-
-		return () => {
-			clearTimeout();
-		}
 	}, [counter]);
 
 	// If phone is invalid, disable button
-	React.useEffect(() => {
+	useEffect(() => {
 		props.isPhoneHasErrors
 			? setIsButtonDisabled(true)
 			: setIsButtonDisabled(false);
 	}, [props.isPhoneHasErrors]);
 
+
+	// Clear handler
+	useEffect(() => {
+		return () => {
+			clearTimeout();
+		};
+	});
+
 	// Disable button, set timer and request RECAPTCHA, then show OTP input.
 	const handleClick = () => {
 		setIsButtonDisabled(true);
-		setCounter(5);
+		setCounter(3);
 		props.onClick();
 	};
 
 	return (
-		<div className={css.form__button__wrapper}>
+		<div className={css.styledButton__wrapper}>
 			<button
-				className={css.form__button}
+				className={css.styledButton}
 				disabled={isButtonDisabled || props.isPhoneHasErrors}
 				onClick={() => handleClick()}>
 				Отправить код

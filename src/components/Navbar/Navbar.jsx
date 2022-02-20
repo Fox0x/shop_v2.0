@@ -1,8 +1,9 @@
 import React from "react";
+import { UserInfo } from "../UserInfo/UserInfo";
 import css from "./Navbar.module.css";
 
-export const Navbar = ({searchQuery, setSearchQuery}) => {
-	
+export const Navbar = ({ searchQuery, setSearchQuery }) => {
+	const [isUserInfoOpen, setUserInfoOpen] = React.useState(false);
 	return (
 		<nav className={css.navbar__wrapper}>
 			<div className={css.leftSide}>
@@ -27,7 +28,9 @@ export const Navbar = ({searchQuery, setSearchQuery}) => {
 					className={css.user__icon}
 					src="/img/svg/user.svg"
 					alt="user"
+					onClick={() => setUserInfoOpen(!isUserInfoOpen)}
 				/>
+				<UserInfo isOpen={isUserInfoOpen}/>
 				{/*Shop cart list  */}
 				<img
 					className={css.cart__icon}

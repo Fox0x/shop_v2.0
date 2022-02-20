@@ -1,0 +1,42 @@
+.userInfo__wrapper {
+	position: fixed;
+	top: 11vh;
+	right: 0.5em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5em;
+	margin: 0;
+	width: 20vw;
+
+	border-top-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 0 0 20px #000;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #dbdfea;
+	font-size: 1.2rem;
+	border: rgba(219, 223, 234, 0.5) solid;
+	transform: translateY(-100%) scale(0);
+	transition: all 0.5s ease-in-out;
+}
+
+.userInfo__show {
+	transform: translateY(0) scale(1);
+}
+
+.userInfo__label {
+	margin: 0;
+	font-size: 1em;
+	color: rgba(219, 223, 234, 0.5);
+}
+
+.userInfo__title {
+	justify-self: start;
+	margin: 0.5em 0 1em 0;
+}
+
+.userInfo__createdAt {
+	margin: 0.5em 0 1em 0;
+	font-size: 0.8em;
+	color: rgba(219, 223, 234, 0.5);
+}
