@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { logout } from "../../controllers/authController";
 import { removeUserFromLS } from "../../controllers/userController";
 import { removeUser } from "../../store/slices/userSlice";
@@ -21,15 +21,11 @@ export const UserInfo = ({ isOpen }) => {
 		dispatch(removeUser());
 		removeUserFromLS();
 		window.currentUser = null;
-		console.log('signout');
 		navigate("/");
 	};
-
-	console.log(name, phone, creationTime);
-
 	return (
 		<div className={userInfoClasses}>
-			{/* TODO: поменять на слайс */}
+		
 			<p className={css.userInfo__title}>{name || phone || 'Incognito'}</p>
 			<span className={css.userInfo__label}>Дата регистрации:</span>
 			<p className={css.userInfo__createdAt}>{creationTime || 'Never'}</p>

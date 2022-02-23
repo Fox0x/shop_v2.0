@@ -51,6 +51,7 @@ export default function AuthForm() {
 				setIsOtpInputHidden(false);
 			})
 			.catch((error) => {
+				console.log(error);
 				arr.push(error.code);
 				setErrorMessages(arr);
 			});

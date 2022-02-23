@@ -10,7 +10,11 @@ export const ItemCard = ({ item, addItemToCart }) => {
 		[css.card_selected]: isSelected,
 	});
 
-	const handleClick = (item) => {};
+	const handleClick = (item, event) => {
+		event.preventDefault();
+		setIsSelected(!isSelected);
+		// addItemToCart(item, amount);
+	};
 
 	return (
 		<div className={css.card}>
@@ -51,7 +55,7 @@ export const ItemCard = ({ item, addItemToCart }) => {
 					</button>
 				</div>
 				<button
-					onClick={() => handleClick(item)}
+					onClick={(event) => handleClick(item, event)}
 					className="primary"
 					disabled={amount == ""}>
 					Купить {parseInt(item.price.replace(" ", "")) * amount} ₽

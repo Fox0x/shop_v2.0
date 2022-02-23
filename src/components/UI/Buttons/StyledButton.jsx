@@ -2,7 +2,9 @@ import React from "react";
 import css from "./styles.module.css";
 
 export const StyledButton = (props) => {
-	const handleClick = () => {
+	const handleClick = (event) => {
+		// required for firefox
+		event.preventDefault();
 		props.onClick();
 	};
 
@@ -11,7 +13,7 @@ export const StyledButton = (props) => {
 			<button
 				type="button"
 				className={css.styledButton}
-				onClick={() => handleClick()}>
+				onClick={(event) => handleClick(event)}>
 				{props.children}
 			</button>
 		</div>

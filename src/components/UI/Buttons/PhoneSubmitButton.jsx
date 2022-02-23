@@ -28,7 +28,9 @@ export const PhoneSubmitButton = (props) => {
 	});
 
 	// Disable button, set timer and request RECAPTCHA, then show OTP input.
-	const handleClick = () => {
+	const handleClick = (event) => {
+		// required for firefox
+		event.preventDefault();
 		setIsButtonDisabled(true);
 		setCounter(3);
 		props.onClick();
@@ -39,7 +41,7 @@ export const PhoneSubmitButton = (props) => {
 			<button
 				className={css.styledButton}
 				disabled={isButtonDisabled || props.isPhoneHasErrors}
-				onClick={() => handleClick()}>
+				onClick={(event) => handleClick(event)}>
 				Отправить код
 			</button>
 			{/* Timer before next verifivation */}

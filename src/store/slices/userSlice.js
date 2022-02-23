@@ -2,13 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUserFromLS } from "../../controllers/userController";
 
 const user = getUserFromLS();
-console.log(user);
-
 const initialState = user
 	? {
 			uid: user.uid ? user.uid : null,
 			name: user.name ? user.name : null,
-			phone: user.phoneNumber ? user.phoneNumber : null,
+			phone: user.phone ? user.phone : null,
 			email: user.email ? user.email : null,
 			isEmailVerified: user.emailVerified ? user.emailVerified : false,
 			creationTime: user.creationTime ? user.creationTime : null,
