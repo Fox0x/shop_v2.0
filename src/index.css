@@ -363,6 +363,8 @@ template {
 
 body {
 	background: url("/public/img/bg.jpg") fixed;
+   font-family: Montserrat, sans-serif;
+	
 }
 
 /* 

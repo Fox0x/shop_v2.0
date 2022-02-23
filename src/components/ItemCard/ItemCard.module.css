@@ -29,9 +29,7 @@
 .card__buttons button {
 	border: 1px solid #dbdfea;
 	border-radius: 3px;
-	font-family: Montserrat, sans-serif;
-	font-weight: 500;
-	padding: 10px 25px;
+	padding: 1em 1.5em;
 	background-color: transparent;
 	color: #c2c2c2;
 	transition: all 0.3s ease-in-out;
@@ -40,6 +38,53 @@
 .card__buttons button:hover {
 	transform: scale(1.05);
 	background-color: rgba(38, 37, 37, 0.3);
+}
+
+.card__buttons button:disabled {
+	opacity: 0.5;
+	border: none;
+}
+
+.card__buttons button:disabled:hover {
+	transform: none;
+	cursor: not-allowed;
+	border-color: transparent;
+}
+
+.card__amount {
+	display: flex;
+	width: 70%;
+	margin: 0 auto 1em;
+	justify-content: center;
+	align-items: center;
+}
+
+.card__amount button {
+	padding: 0.5em;
+	border: none;
+	font-size: 1.2rem;
+}
+
+.card__amount button:hover {
+	transform: scale(1.5);
+}
+
+.card__amount input {
+	color: #dbdfea;
+	outline: transparent;
+	background-color: transparent;
+	border: none;
+	border-radius: 10px;
+	transition: all 0.5s ease-in-out;
+	margin: 0 1em;
+	padding: 0.5rem;
+	text-align: center;
+	width: 50%;
+}
+
+.card__amount input:focus,
+.card__amount input:hover {
+	outline: 1px solid rgba(219, 223, 234, 0.5);
 }
 
 @keyframes show {
