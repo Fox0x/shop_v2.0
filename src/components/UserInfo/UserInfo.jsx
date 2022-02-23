@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../controllers/authController";
 import { removeUserFromLS } from "../../controllers/userController";
@@ -9,6 +10,7 @@ import css from "./UserInfo.module.css";
 
 export const UserInfo = ({ isOpen }) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const {name, phone, creationTime} = useSelector((state) => state.user);
 	const userInfoClasses = classNames(css.userInfo__wrapper, {
 		[css.userInfo__show]: isOpen,
@@ -18,6 +20,9 @@ export const UserInfo = ({ isOpen }) => {
 		logout();
 		dispatch(removeUser());
 		removeUserFromLS();
+		window.currentUser = null;
+		console.log('signout');
+		navigate("/");
 	};
 
 	console.log(name, phone, creationTime);

@@ -62,7 +62,7 @@ export default function AuthForm() {
 				// Save user data to store.
 				storeUser(result.user);
 
-				navigate("/");
+				navigate("/shop");
 			})
 			.catch((error) => {
 				formik.values.otp = "";
