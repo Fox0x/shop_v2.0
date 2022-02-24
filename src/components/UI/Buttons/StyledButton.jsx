@@ -11,7 +11,6 @@ export const StyledButton = (props) => {
 	return (
 		<div className={css.styledButton__wrapper}>
 			<button
-				type="button"
 				className={css.styledButton}
 				onClick={(event) => handleClick(event)}>
 				{props.children}
