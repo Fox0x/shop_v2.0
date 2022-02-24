@@ -19,7 +19,7 @@ export default function AuthForm() {
 	const [errorMessages, setErrorMessages] = React.useState(null);
 	const [stage, setStage] = React.useState("phoneVerification");
 	const [isOtpInputHidden, setIsOtpInputHidden] = React.useState(true);
-
+	const otpInput = React.useRef(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const formik = useFormik({
@@ -41,6 +41,11 @@ export default function AuthForm() {
 
 	// Request RECAPTCHA, then request user from storage.
 	useEffect(() => {
+		if (window.recaptchaVerifier && window.recaptchaVerifier.recaptcha) {
+			window.recaptchaVerifier.recaptcha.reset();
+			window.recaptchaVerifier.clear();
+		}
+
 		requestRecaptchVerifier();
 	}, []);
 
@@ -49,6 +54,7 @@ export default function AuthForm() {
 		await signInWithPhone(formik.values.phone)
 			.then(() => {
 				setIsOtpInputHidden(false);
+				otpInput.current.focus();
 			})
 			.catch((error) => {
 				console.log(error);
@@ -62,7 +68,6 @@ export default function AuthForm() {
 			.then((result) => {
 				// Save user data to store.
 				storeUser(result.user);
-
 				navigate("/shop");
 			})
 			.catch((error) => {
@@ -145,6 +150,7 @@ export default function AuthForm() {
 					Код подтверждения
 				</label>
 				<input
+					ref={otpInput}
 					hidden={isOtpInputHidden}
 					className={css.input}
 					placeholder="Код из SMS"
