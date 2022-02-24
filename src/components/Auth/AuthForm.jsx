@@ -12,7 +12,7 @@ import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
 import { StyledButton } from "../UI/Buttons/StyledButton";
 import ErrorsPopup from "../UI/ErrorsPopup/ErrorsPopup";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { saveUserToLS } from "../../controllers/userController";
 
 export default function AuthForm() {
@@ -22,6 +22,8 @@ export default function AuthForm() {
 	const otpInput = React.useRef(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
+
 	const formik = useFormik({
 		initialValues: {
 			phone: "",
@@ -41,8 +43,8 @@ export default function AuthForm() {
 
 	// Request RECAPTCHA, then request user from storage.
 	useEffect(() => {
-		if (window.recaptchaVerifier && window.recaptchaVerifier.recaptcha) {
-			window.recaptchaVerifier.recaptcha.reset();
+		if (window.recaptchaVerifier) {
+			window.recaptchaVerifier.recaptcha?.reset();
 			window.recaptchaVerifier.clear();
 		}
 

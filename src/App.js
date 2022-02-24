@@ -1,15 +1,22 @@
 import React from "react";
-import { Route, Routes } from "react-router";
+import { Route, Routes, Navigate } from "react-router";
+import RequireAuth from "./hoc/RequireAuth.js";
 import { AuthPage } from "./pages/Auth/AuthPage.jsx";
 import { ShopPage } from "./pages/Shop/ShopPage.jsx";
 
 export const App = () => {
-
-
 	return (
 		<Routes>
-			<Route path="/shop" element={<ShopPage />} />
 			<Route path="/" element={<AuthPage />} />
+			<Route
+				path="/shop"
+				element={
+					<RequireAuth>
+						<ShopPage />
+					</RequireAuth>
+				}
+			/>
+			<Route path="*" element={<Navigate to="/" replace/>} />
 		</Routes>
 	);
 };
