@@ -24,12 +24,22 @@
 	background-color: transparent;
 	position: absolute;
 	height: 100%;
-	width: 50%;
+	width: 10%;
 	display: flex;
 	z-index: 10;
 	top: 0;
 	outline: none;
 	border: none;
+	transition: all 0.5s ease;
+}
+
+.slider button:hover {
+	cursor: pointer;
+	background-color: rgba(219, 223, 234, 0.5);
+}
+
+.slider button:active {
+	background-color: rgba(219, 223, 234, 1);
 }
 
 .slider__buttonRight {

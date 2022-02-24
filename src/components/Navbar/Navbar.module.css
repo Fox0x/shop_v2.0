@@ -1,13 +1,13 @@
 .navbar__wrapper {
 	height: 10vh;
+	min-width: calc(100vw - 2em);
 	display: flex;
 	flex-flow: row nowrap;
+	align-items: center;
 	backdrop-filter: blur(6px);
 	-webkit-backdrop-filter: blur(6px);
 	box-shadow: 0 0 20px #000;
-	align-items: center;
-	background-color: rgba(0, 0, 0, 0.2);
-	max-width: 100%;
+		background-color: rgba(0, 0, 0, 0.2);
 	padding: 0 1em;
 	position: sticky;
 	top: 0;
@@ -26,16 +26,16 @@
 
 .centerSide {
 	display: flex;
-	flex: 6;
 	justify-content: center;
-	
+	flex: 8;
 }
 
 .rightSide {
 	display: flex;
-	flex: 4;
+	flex: 2;
 	align-items: center;
 	justify-content: flex-end;
+	width: 100%;
 }
 
 .rightSide img {
@@ -44,10 +44,11 @@
 }
 
 .rightSide img:first-of-type {
-	margin-right: 1em;
+	margin-right: 2em;
 }
 
 .searchInput {
+	text-align: center;
 	color: #dbdfea;
 	outline: transparent;
 	background-color: transparent;
@@ -55,8 +56,8 @@
 	border-radius: 10px;
 	font-size: 1.2rem;
 	transition: all 0.5s ease-in-out;
-	margin: 0 auto;
 	padding: 0.5rem;
+	width: 50%;
 }
 
 .searchInput:focus,

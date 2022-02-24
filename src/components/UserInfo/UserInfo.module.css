@@ -1,4 +1,15 @@
 .userInfo__wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	transform: translateY(-100%) scale(0);
+	transition: all 0.5s ease-in-out;
+}
+
+.userInfo__content {
 	position: fixed;
 	top: 11vh;
 	right: 0.5em;
@@ -14,8 +25,6 @@
 	color: #dbdfea;
 	font-size: 1.2rem;
 	border: rgba(219, 223, 234, 0.5) solid;
-	transform: translateY(-100%) scale(0);
-	transition: all 0.5s ease-in-out;
 }
 
 .userInfo__show {

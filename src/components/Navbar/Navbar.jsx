@@ -4,6 +4,8 @@ import css from "./Navbar.module.css";
 
 export const Navbar = ({ searchQuery, setSearchQuery }) => {
 	const [isUserInfoOpen, setUserInfoOpen] = React.useState(false);
+	const hideUserInfo = () => setUserInfoOpen(false);
+
 	return (
 		<nav className={css.navbar__wrapper}>
 			<div className={css.leftSide}>
@@ -30,7 +32,7 @@ export const Navbar = ({ searchQuery, setSearchQuery }) => {
 					alt="user"
 					onClick={() => setUserInfoOpen(!isUserInfoOpen)}
 				/>
-				<UserInfo isOpen={isUserInfoOpen}/>
+				<UserInfo isOpen={isUserInfoOpen} hideModal={hideUserInfo}/>
 				{/*Shop cart list  */}
 				<img
 					className={css.cart__icon}
