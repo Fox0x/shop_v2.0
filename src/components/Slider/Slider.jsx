@@ -49,37 +49,37 @@ export const Slider = ({isHidden}) => {
 					}}>
 					<img
 						className="slide"
-						src="/img/slider/slide1.jpg"
+						src="/img/slider/slide1.webp"
 						alt="slide1"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide2.jpg"
+						src="/img/slider/slide2.webp"
 						alt="slide2"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide3.jpg"
+						src="/img/slider/slide3.webp"
 						alt="slide3"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide4.jpg"
+						src="/img/slider/slide4.webp"
 						alt="slide4"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide5.jpg"
+						src="/img/slider/slide5.webp"
 						alt="slide5"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide6.jpg"
+						src="/img/slider/slide6.webp"
 						alt="slide6"
 					/>
 					<img
 						className="slide"
-						src="/img/slider/slide7.jpg"
+						src="/img/slider/slide7.webp"
 						alt="slide7"
 					/>
 				</div>
