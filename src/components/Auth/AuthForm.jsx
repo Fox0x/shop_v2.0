@@ -22,7 +22,6 @@ export default function AuthForm() {
 	const otpInput = React.useRef(null);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	const formik = useFormik({
 		initialValues: {
@@ -95,7 +94,7 @@ export default function AuthForm() {
 		// Save user data to store.
 		dispatch(setUser(tmpUser));
 		// Save user data to local storage.
-		saveUserToLS(tmpUser);
+		saveUserToLS(user);
 	};
 
 	// TODO: Переделать на стейт

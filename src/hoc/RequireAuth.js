@@ -7,7 +7,7 @@ export default function RequireAuth({ children }) {
 	const isAuth = getUserFromLS();
 
 	if (!isAuth) {
-		return <Navigate to="/" state={{ from: location }} />;
+		return <Navigate to="/auth" state={{ from: location }} />;
 	}
 
 	return children;

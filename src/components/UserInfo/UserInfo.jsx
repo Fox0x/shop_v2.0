@@ -8,21 +8,19 @@ import { removeUser } from "../../store/slices/userSlice";
 import { StyledButton } from "../UI/Buttons/StyledButton";
 import css from "./UserInfo.module.css";
 
-export const UserInfo = ({ isOpen, hideModal}) => {
+export const UserInfo = ({ isOpen, hideModal }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { name, phone, creationTime } = useSelector((state) => state.user);
 	const userInfoClasses = classNames(css.userInfo__wrapper, {
 		[css.userInfo__show]: isOpen,
 	});
-
+	const { phone, name, creationTime } = useSelector((state) => state.user);
 
 	const signout = () => {
 		logout();
 		dispatch(removeUser());
 		removeUserFromLS();
-		window.currentUser = null;
-		navigate("/");
+		navigate("/auth");
 	};
 	return (
 		<div className={userInfoClasses} onClick={() => hideModal()}>

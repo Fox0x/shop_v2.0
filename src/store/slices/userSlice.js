@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getUserFromLS } from "../../controllers/userController";
 
 const user = getUserFromLS();
+console.log(user)
 const initialState = user
 	? {
 			uid: user.uid ? user.uid : null,

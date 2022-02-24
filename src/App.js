@@ -7,7 +7,7 @@ import { ShopPage } from "./pages/Shop/ShopPage.jsx";
 export const App = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<AuthPage />} />
+			<Route path="/auth" element={<AuthPage />} />
 			<Route
 				path="/shop"
 				element={
@@ -16,7 +16,7 @@ export const App = () => {
 					</RequireAuth>
 				}
 			/>
-			<Route path="*" element={<Navigate to="/" replace/>} />
+			<Route path="*" element={<Navigate to="/auth" replace/>} />
 		</Routes>
 	);
 };

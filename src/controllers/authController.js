@@ -1,19 +1,5 @@
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
-import { removeUserFromLS, saveUserToLS } from "./userController";
-
-onAuthStateChanged(auth, (user) => {
-	if (user) {
-		// // User is signed in.
-		// console.log("User is signed in. \n", user);
-		saveUserToLS(user);
-	} else {
-		// // User is signed out
-		// console.log("User is signed out.");
-		removeUserFromLS();
-	}
-});
 
 // Create RECAPTCHA component
 export function requestRecaptchVerifier() {
