@@ -31,6 +31,7 @@
 	outline: none;
 	border: none;
 	transition: all 0.5s ease;
+	padding: 1em;
 }
 
 .slider button:hover {
@@ -42,20 +43,27 @@
 	background-color: rgba(219, 223, 234, 1);
 }
 
-.slider__buttonRight {
-	right: 0;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
 .slider__buttonLeft {
 	left: 0;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	transform: rotate(180deg);
+	/* WTF?!?! */
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+	
 }
+
+.slider__buttonRight {
+	right: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px;
+}
+
 
 .slider__line {
 	display: flex;
