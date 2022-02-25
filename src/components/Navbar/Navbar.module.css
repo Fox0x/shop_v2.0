@@ -7,7 +7,7 @@
 	backdrop-filter: blur(6px);
 	-webkit-backdrop-filter: blur(6px);
 	box-shadow: 0 0 20px #000;
-		background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.2);
 	padding: 0 1em;
 	position: sticky;
 	top: 0;
@@ -70,6 +70,29 @@
 .user__icon:hover {
 	animation: vibration-scale 0.5s;
 	cursor: pointer;
+}
+
+.cart__count {
+	position: relative;
+	top: -0.5em;
+	right: 3em;
+	background-color: #ff5a5f;
+	color: #fff;
+	border-radius: 50%;
+	width: 1.5em;
+	height: 1.5em;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+}
+
+.count__hidden {
+	opacity: 0;
 }
 
 @keyframes vibration-scale {

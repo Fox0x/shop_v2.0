@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./ShopPage.module.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Slider } from "../../components/Slider/Slider";
 import { ItemCard } from "../../components/ItemCard/ItemCard";
 import { useSearch } from "../../hooks/useSearch";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, updateItem } from "../../store/slices/cartSlice";
+import { saveCartToSS } from "../../controllers/cartController";
+
 export const ShopPage = () => {
 	const [searchQery, setSearchQuery] = React.useState("");
 	const items = useSearch(searchQery);
+	const cart = useSelector((state) => state.cart);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		saveCartToSS(cart);
+	}, [cart]);
+
+	const addItemToCart = (item, quantity) => {
+		dispatch(addItem({ item, quantity }));	
+	};
 
 	return (
 		<div className={css.shop__wrapper}>
@@ -14,6 +28,7 @@ export const ShopPage = () => {
 				searchQuery={searchQery}
 				setSearchQuery={setSearchQuery}
 				className={css.navbar}
+				cartCount={cart.length}
 			/>
 			<Slider isHidden={searchQery.length > 0} />
 			{items.length > 0 ? (
@@ -35,7 +50,18 @@ export const ShopPage = () => {
 										category
 									) {
 										return (
-											<ItemCard item={item} key={index} />
+											<ItemCard
+												item={item}
+												key={index}
+												selectedQuantity={
+													cart.find(
+														(el) =>
+															el.item.title ===
+															item.title
+													)?.quantity || 0
+												}
+												addItemToCart={addItemToCart}
+											/>
 										);
 									}
 									return null;

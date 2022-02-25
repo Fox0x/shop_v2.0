@@ -80,7 +80,8 @@ export default function AuthForm() {
 
 	// Save user data.
 	const storeUser = (user) => {
-		const tmpUser = {
+		// Save user data to store.
+		dispatch(setUser({
 			uid: user.uid,
 			name: user.displayName,
 			email: user.email,
@@ -90,9 +91,7 @@ export default function AuthForm() {
 			lastSignInTime: user.metadata.lastSignInTime,
 			createdAt: user.metadata.createdAt,
 			lastLoginAt: user.metadata.lastLoginAt,
-		};
-		// Save user data to store.
-		dispatch(setUser(tmpUser));
+		}));
 		// Save user data to local storage.
 		saveUserToLS(user);
 	};

@@ -1,23 +1,36 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./ItemCard.module.css";
 
-export const ItemCard = ({ item, addItemToCart }) => {
-	const [isSelected, setIsSelected] = React.useState(false);
-	const [amount, setAmount] = React.useState(1);
+export const ItemCard = ({ item, selectedQuantity, addItemToCart }) => {
+	const [quantity, setQuantity] = React.useState(1);
+	
+	const [amount, setAmount] = React.useState(selectedQuantity);
+
+	useEffect(() => {
+		setAmount(selectedQuantity);
+	},[quantity, selectedQuantity]);
+
+	
+
+	// console.log(item.title, selectedQuantity.find((el) => el.item.title === item.title)?.quantity);
 
 	const itemCardClasses = classNames(css.card, {
-		[css.card_selected]: isSelected,
+		[css.card_selected]: selectedQuantity,
+	});
+
+	const countIconClases = classNames(css.card__count, {
+		[css.count__hidden]: selectedQuantity <= 0, //!isSelected,
 	});
 
 	const handleClick = (item, event) => {
 		event.preventDefault();
-		setIsSelected(!isSelected);
-		// addItemToCart(item, amount);
+		addItemToCart(item, quantity);
 	};
 
 	return (
-		<div className={css.card}>
+		<div className={itemCardClasses}>
+			<span className={countIconClases}>{amount < 100 ? amount : "99+"}</span>
 			<img
 				className={css.card__image}
 				src={item.image}
@@ -28,28 +41,28 @@ export const ItemCard = ({ item, addItemToCart }) => {
 			<h3>{item.title}</h3>
 			<p>{item.description}</p>
 			<div className={css.card__buttons}>
-				<div className={css.card__amount}>
+				<div className={css.card__quantity}>
 					<button
 						onClick={() => {
-							amount > 1 && setAmount(amount - 1);
+							quantity > 1 && setQuantity(quantity - 1);
 						}}>
 						-
 					</button>
 					<input
 						type="text"
 						placeholder="0"
-						value={amount}
+						value={quantity}
 						onChange={(e) => {
 							e.target.value = e.target.value.replace(
 								/[^1-9, 0-9]/g,
 								""
 							);
-							setAmount(parseInt(e.target.value) || "");
+							setQuantity(parseInt(e.target.value) || "");
 						}}
 					/>
 					<button
 						onClick={() => {
-							amount < 100000 && setAmount(amount + 1);
+							quantity < 100000 && setQuantity(quantity + 1);
 						}}>
 						+
 					</button>
@@ -57,8 +70,8 @@ export const ItemCard = ({ item, addItemToCart }) => {
 				<button
 					onClick={(event) => handleClick(item, event)}
 					className="primary"
-					disabled={amount == ""}>
-					Купить {parseInt(item.price.replace(" ", "")) * amount} ₽
+					disabled={quantity == ""}>
+					Купить {parseInt(item.price.replace(" ", "")) * quantity} ₽
 				</button>
 			</div>
 		</div>

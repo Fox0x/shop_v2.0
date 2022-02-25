@@ -1,10 +1,14 @@
+import classNames from "classnames";
 import React from "react";
 import { UserInfo } from "../UserInfo/UserInfo";
 import css from "./Navbar.module.css";
 
-export const Navbar = ({ searchQuery, setSearchQuery }) => {
+export const Navbar = ({ searchQuery, setSearchQuery, cartCount }) => {
 	const [isUserInfoOpen, setUserInfoOpen] = React.useState(false);
 	const hideUserInfo = () => setUserInfoOpen(false);
+	const cartIconClases = classNames(css.cart__count, {
+		[css.count__hidden]: !cartCount > 0,
+	});
 
 	return (
 		<nav className={css.navbar__wrapper}>
@@ -34,11 +38,14 @@ export const Navbar = ({ searchQuery, setSearchQuery }) => {
 				/>
 				<UserInfo isOpen={isUserInfoOpen} hideModal={hideUserInfo}/>
 				{/*Shop cart list  */}
+				<div >
 				<img
 					className={css.cart__icon}
 					src="/img/svg/cart.svg"
 					alt="cart"
 				/>
+				</div>
+				<span className={cartIconClases}>{cartCount < 100 ? cartCount : "99+"}</span>
 			</div>
 		</nav>
 	);
