@@ -5,7 +5,7 @@ import { Slider } from "../../components/Slider/Slider";
 import { ItemCard } from "../../components/ItemCard/ItemCard";
 import { useSearch } from "../../hooks/useSearch";
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, updateItem } from "../../store/slices/cartSlice";
+import { addItem, removeItem } from "../../store/slices/cartSlice";
 import { saveCartToSS } from "../../controllers/cartController";
 
 export const ShopPage = () => {
@@ -21,6 +21,10 @@ export const ShopPage = () => {
 	const addItemToCart = (item, quantity) => {
 		dispatch(addItem({ item, quantity }));	
 	};
+
+	const removeItemFromCart = (item) => {
+		dispatch(removeItem(item));
+	}
 
 	return (
 		<div className={css.shop__wrapper}>
@@ -61,6 +65,7 @@ export const ShopPage = () => {
 													)?.quantity || 0
 												}
 												addItemToCart={addItemToCart}
+												removeItemFromCart={removeItemFromCart}
 											/>
 										);
 									}
