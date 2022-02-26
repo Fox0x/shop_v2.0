@@ -19,12 +19,12 @@ export const ShopPage = () => {
 	}, [cart]);
 
 	const addItemToCart = (item, quantity) => {
-		dispatch(addItem({ item, quantity }));	
+		dispatch(addItem({ item, quantity }));
 	};
 
 	const removeItemFromCart = (item) => {
 		dispatch(removeItem(item));
-	}
+	};
 
 	return (
 		<div className={css.shop__wrapper}>
@@ -65,7 +65,9 @@ export const ShopPage = () => {
 													)?.quantity || 0
 												}
 												addItemToCart={addItemToCart}
-												removeItemFromCart={removeItemFromCart}
+												removeItemFromCart={
+													removeItemFromCart
+												}
 											/>
 										);
 									}
