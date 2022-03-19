@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import { Cart } from "../Cart/Cart";
+import SideMenu from "../SideMenu/SideMenu";
 import { UserInfo } from "../UserInfo/UserInfo";
 import css from "./Navbar.module.css";
 
@@ -16,6 +17,7 @@ export const Navbar = ({ searchQuery, setSearchQuery, cartCount }) => {
 	return (
 		<nav className={css.navbar__wrapper}>
 			<Cart isOpen={isCartOpen} hideModal={hideCart}/>
+			<SideMenu/>
 			<div className={css.leftSide}>
 				<img
 					className={css.menu__icon}
