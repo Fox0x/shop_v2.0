@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../store/slices/cartSlice";
 import classNames from "classnames";
@@ -6,10 +6,16 @@ import css from "./Cart.module.css";
 
 export const Cart = ({ isOpen, hideModal }) => {
 	const cart = useSelector((state) => state.cart);
+	const [cartTotal, setCartTotal] = React.useState(0);
 	const dispatch = useDispatch();
 	const cartClasses = classNames(css.cart__wrapper, {
 		[css.cart__hidden]: !isOpen,
 	});
+
+useEffect(() => {
+	setCartTotal(cart.reduce((acc, item) => acc + item.total, 0) || 0);
+},[cart]);
+
 
 	// If cart is empty, hide the cart
 	!cart.length && hideModal();
@@ -27,6 +33,7 @@ export const Cart = ({ isOpen, hideModal }) => {
 						x
 					</button>
 				</div>
+				
 				{cart.map((item) => (
 					<div className={css.cart__item} key={item.item.title}>
 						{/* Item image */}
@@ -62,11 +69,16 @@ export const Cart = ({ isOpen, hideModal }) => {
 								onClick={() => dispatch(removeItem(item.item))}>
 								x
 							</button>
-							<span>{item.quantity * item.item.price + "₽"}</span>
+							<span>{item.total + "₽"}</span>
 						</div>
 					</div>
 				))}
+				
+				<div className={css.cart__footer}>
+					<button>{cartTotal}</button>
+				</div>
 			</div>
+			
 		</div>
 	);
 };

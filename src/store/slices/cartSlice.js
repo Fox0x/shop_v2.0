@@ -12,6 +12,7 @@ const cartSlice = createSlice({
 			const filteredItem = state.filter((item) => {
 				if (item.item.title === action.payload.item.title) {
 					item.quantity += action.payload.quantity;
+					item.total += action.payload.item.price * action.payload.quantity;
 				}
 				return item;
 			});
@@ -25,11 +26,13 @@ const cartSlice = createSlice({
 				state.push({
 					item: action.payload.item,
 					quantity: action.payload.quantity,
+					total: action.payload.item.price * action.payload.quantity,
 				});
 			}
 		},
 		removeItem: (state, action) => {
-			state.splice(action.payload, 1);
+			state.splice(state.findIndex((item) => item.item.title === action.payload.title), 1);
+			
 		},
 	},
 });
