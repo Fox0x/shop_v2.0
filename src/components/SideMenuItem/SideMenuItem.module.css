@@ -2,10 +2,16 @@
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
-	padding: 1em;
+	padding: 0.5em 1em;
+	margin: 0.5em 0;
     text-decoration: none;
     color: #dbdfea;
     font-size: 1.2em;
+}
+
+.sideMenuItem:hover {
+	background-color: rgba(219, 223, 234, 0.5);
+	color: #fff;
 }
 
 .sideMenuItem__icon {

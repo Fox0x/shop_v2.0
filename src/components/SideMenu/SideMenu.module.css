@@ -22,3 +22,7 @@
 	color: #dbdfea;
 	border: rgba(219, 223, 234, 0.5) solid;
 }
+
+.sideMenu__hidden {
+	display: none;
+}

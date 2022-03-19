@@ -20,7 +20,9 @@
 .cart__content {
 	width: 80%;
 	height: 90%;
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.85);
+	color: #dbdfea;
+	border: rgba(219, 223, 234, 0.5) solid;
 	border-radius: 10px;
 	display: flex;
 	flex-flow: column nowrap;
@@ -30,7 +32,7 @@
 }
 
 .cart__header {
-	background-color: #fff;
+	background-color: rgba(0, 0, 0, 0.85);
 	position: sticky;
 	top: 0;
 	display: flex;
@@ -39,13 +41,13 @@
 	justify-content: space-between;
 	justify-self: flex-start;
 	width: 100%;
-	border-bottom: 2px solid #dbdfea;
+	border-bottom: 2px solid rgba(219, 223, 234, 0.5);
 	padding: 1em 2em;
 }
 
 .cart__title {
 	font-size: 2em;
-	color: #000;
+	color: #dbdfea;
 }
 
 .cart__item {
@@ -53,7 +55,7 @@
 	flex-flow: row nowrap;
 	align-items: center;
 	padding: 0 0.5em 0.5em;
-	border-bottom: 2px solid #dbdfea;
+	border-bottom: 2px solid rgba(219, 223, 234, 0.5);
 	width: 90%;
     margin: 2em 0;
 }
@@ -78,18 +80,6 @@
 	width: 100%;
 }
 
-.cart__item__count input {
-	color: #000;
-	background-color: transparent;
-	border: none;
-	border-radius: 10px;
-	outline: 1px solid #000;
-	margin: 0 0.5em;
-	padding: 0.5rem;
-	text-align: center;
-	width: 10em;
-}
-
 .cart__item__price {
     display: flex;
 	flex-direction: column;
@@ -98,7 +88,8 @@
 
 .cart__item__price button {
 	background: transparent;
-	border: 2px solid #dbdfea;
+	font-weight: bold;
+	border: 2px solid rgba(219, 223, 234, 0.5);
 	color: rgb(189, 15, 27);
 	border-radius: 50%;
 	justify-self: start;
@@ -107,7 +98,7 @@
 }
 
 .cart__item span {
-	color: #000;
+	color: #dbdfea;
 	display: flex;
 	align-items: center;
 	justify-content: center;
