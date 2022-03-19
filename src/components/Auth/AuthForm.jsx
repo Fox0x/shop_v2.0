@@ -12,7 +12,7 @@ import { PhoneSubmitButton } from "../UI/Buttons/PhoneSubmitButton";
 import { StyledButton } from "../UI/Buttons/StyledButton";
 import ErrorsPopup from "../UI/ErrorsPopup/ErrorsPopup";
 import { useDispatch } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { saveUserToLS } from "../../controllers/userController";
 
 export default function AuthForm() {
@@ -128,7 +128,7 @@ export default function AuthForm() {
 				<input
 					autoFocus
 					className={css.input}
-					placeholder="+380711234567"
+					placeholder="+111-22-333-33-33"
 					type="tel"
 					name="phone"
 					value={formik.values.phone}

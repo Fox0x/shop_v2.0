@@ -26,6 +26,7 @@
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
+	justify-content: space-between;
 	overflow: auto;
 	overflow-x: hidden;
 	padding: 0 1em;
@@ -48,17 +49,49 @@
 .cart__footer {
 	position: sticky;
 	bottom: 0;
+	left: 0;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: flex-end;
 	width: calc(100% - 2em);
+	max-height: 10vh;
 	background-color: rgba(0, 0, 0, 0.85);
 	padding: 1em 2em;
 	border-top: 2px solid rgba(219, 223, 234, 0.5);
 	align-items: center;
 }
 
+.cart__total {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-end;
+	max-width: calc(100% - 2em);
+	margin-right: 1em;
+	background-color: rgba(0, 128, 56, 0.1);
+	border: 1px solid rgb(0, 207, 91);
+	padding: 1em;
+}
+
+.cart__total > span {
+	margin-right: 1em;
+	font-size: 1.5em;
+}
+
+.cart__total > button {
+	background-color: rgb(0, 128, 56);
+	color: #dbdfea;
+	border-radius: 10px;
+	padding: 0.5em 1em;
+	border: none;
+	transition: all 0.2s ease-in-out;
+
+}
+
+.cart__total > button:hover {
+	background-color: rgb(3, 151, 67);
+}
 .cart__title {
 	font-size: 2em;
 	color: #dbdfea;

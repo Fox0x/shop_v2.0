@@ -12,19 +12,18 @@ export const Cart = ({ isOpen, hideModal }) => {
 		[css.cart__hidden]: !isOpen,
 	});
 
-useEffect(() => {
-	setCartTotal(cart.reduce((acc, item) => acc + item.total, 0) || 0);
-},[cart]);
-
+	useEffect(() => {
+		setCartTotal(cart.reduce((acc, item) => acc + item.total, 0) || 0);
+	}, [cart]);
 
 	// If cart is empty, hide the cart
 	!cart.length && hideModal();
 
-	
-
 	return (
 		<div className={cartClasses} onClick={() => hideModal()}>
-			<div className={css.cart__content} onClick={event => event.stopPropagation()}>
+			<div
+				className={css.cart__content}
+				onClick={(event) => event.stopPropagation()}>
 				<div className={css.cart__header}>
 					<div className={css.cart__title}>Корзина</div>
 					<button
@@ -33,7 +32,7 @@ useEffect(() => {
 						x
 					</button>
 				</div>
-				
+
 				{cart.map((item) => (
 					<div className={css.cart__item} key={item.item.title}>
 						{/* Item image */}
@@ -59,7 +58,7 @@ useEffect(() => {
 									{item.quantity +
 										" шт. / " +
 										item.item.price +
-										"₽"}
+										" ₴"}
 								</span>
 							</div>
 						</div>
@@ -69,16 +68,18 @@ useEffect(() => {
 								onClick={() => dispatch(removeItem(item.item))}>
 								x
 							</button>
-							<span>{item.total + "₽"}</span>
+							<span>{item.total + " ₴"}</span>
 						</div>
 					</div>
 				))}
-				
+
 				<div className={css.cart__footer}>
-					<button>{cartTotal}</button>
+					<div className={css.cart__total}>
+						<span>{cartTotal} ₴</span>
+						<button>Оформить заказ</button>
+					</div>
 				</div>
 			</div>
-			
 		</div>
 	);
 };

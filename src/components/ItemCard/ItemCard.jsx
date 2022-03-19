@@ -80,7 +80,7 @@ export const ItemCard = ({ item, selectedQuantity, addItemToCart, removeItemFrom
 					onClick={(event) => handleClick(item, event)}
 					className="primary"
 					disabled={quantity == ""}>
-					Купить {item.price * quantity}₽
+					Купить {item.price * quantity} ₴
 				</button>
 			</div>
 		</div>

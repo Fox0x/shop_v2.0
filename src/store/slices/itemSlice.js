@@ -4,7 +4,7 @@ const initialState = [
     {
         category: "category1",
         title: "Item 1",
-        description: "Самая вкусная и дешевая вкусная дешевка в мире. Покупай, поспеши, глаза закрой и не дыши!",
+        description: "Description of item 1",
         price: 1000,
         image: "https://st2.depositphotos.com/1006753/7977/i/600/depositphotos_79773172-stock-photo-red-coffee-machine.jpg",
     },
